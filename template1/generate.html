@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Hamza Bhatti Dynamic Resume</title>
+</head>
+<body>
+  <div class="form-container">
+    <!-- Personal Information -->
+    <fieldset class="fieldset">
+      <legend>Personal Information</legend>
+      <label for="name">Full Name:</label>
+      <input type="text" placeholder="Enter Your Name" id="name" required />
+
+      <label for="number">Phone Number:</label>
+      <input type="text" placeholder="Enter Your Phone Number" id="number" required />
+
+      <label for="email">Email:</label>
+      <input type="email" placeholder="Enter Your Email" id="email" required />
+    </fieldset>
+
+    <!-- Education -->
+    <fieldset class="fieldset">
+      <legend>Education</legend>
+      <label for="edu-1">Your Last Qualification:</label>
+      <input type="text" placeholder="Enter Your Last Qualification" id="edu-1" required />
+
+      <label for="edu-2">Your Second Last Qualification (Optional):</label>
+      <input type="text" placeholder="Enter Your Second Last Qualification" id="edu-2" />
+
+      <label for="edu-3">Your Third Last Qualification (Optional):</label>
+      <input type="text" placeholder="Enter Your Third Last Qualification" id="edu-3" />
+    </fieldset>
+
+    <!-- Introduction -->
+    <fieldset class="fieldset">
+      <legend>Introduction</legend>
+      <label for="intro">Your Introduction:</label>
+      <textarea rows="5" placeholder="Write the introduction" id="intro" required></textarea>
+    </fieldset>
+
+    <!-- Experience -->
+    <fieldset class="fieldset">
+      <legend>Experience</legend>
+      <label for="exp-1">Your Last Experience:</label>
+      <textarea rows="5" placeholder="Enter Your Last Experience" id="exp-1" required></textarea>
+
+      <label for="exp-2">Your Second Last Experience (Optional):</label>
+      <textarea rows="5" placeholder="Enter Your Second Last Experience" id="exp-2"></textarea>
+
+      <label for="exp-3">Your Third Last Experience (Optional):</label>
+      <textarea rows="5" placeholder="Enter Your Third Last Experience" id="exp-3"></textarea>
+    </fieldset>
+
+    <!-- Skills -->
+    <fieldset class="fieldset">
+      <legend>Skills</legend>
+      <label for="ski-1">Skill 1 (Optional):</label>
+      <input type="text" placeholder="Enter Your Skill" id="ski-1" />
+
+      <label for="ski-2">Skill 2 (Optional):</label>
+      <input type="text" placeholder="Enter Your Skill" id="ski-2" />
+
+      <label for="ski-3">Skill 3 (Optional):</label>
+      <input type="text" placeholder="Enter Your Skill" id="ski-3" />
+
+      <label for="ski-4">Skill 4 (Optional):</label>
+      <input type="text" placeholder="Enter Your Skill" id="ski-4" />
+
+      <label for="ski-5">Skill 5 (Optional):</label>
+      <input type="text" placeholder="Enter Your Skill" id="ski-5" />
+
+      <label for="ski-6">Skill 6 (Optional):</label>
+      <input type="text" placeholder="Enter Your Skill" id="ski-6" />
+    </fieldset>
+
+    <!-- Certification -->
+    <fieldset class="fieldset">
+      <legend>Certification</legend>
+      <label for="first-1">First:</label>
+      <textarea rows="5" placeholder="Enter Your First Certification" id="first-1" required></textarea>
+
+      <label for="sec-2">Second (Optional):</label>
+      <textarea rows="5" placeholder="Enter Your Second Certification" id="sec-2"></textarea>
+
+      <label for="third-3">Third (Optional):</label>
+      <textarea rows="5" placeholder="Enter Your Third Certification" id="third-3"></textarea>
+
+      <label for="forth-4">Forth (Optional):</label>
+      <textarea rows="5" placeholder="Enter Your Forth Certification" id="forth-4"></textarea>
+
+      <label for="fifth-5">Fifth (Optional):</label>
+      <textarea rows="5" placeholder="Enter Your Fifth Certification" id="fifth-5"></textarea>
+    </fieldset>
+
+    <!-- Social Links -->
+    <fieldset class="fieldset">
+      <legend>Social Links</legend>
+      <label for="link-1">Link 1:</label>
+      <input type="text" placeholder="Enter Your Link" id="link-1" required />
+
+      <label for="link-2">Link 2 (Optional):</label>
+      <input type="text" placeholder="Enter Your Link" id="link-2" />
+
+      <label for="link-3">Link 3 (Optional):</label>
+      <input type="text" placeholder="Enter Your Link" id="link-3" />
+
+      <label for="profilepic">Upload Profile Picture:</label>
+      <input type="file" id="profilepic" />
+    </fieldset>
+
+    <div class="button-container">
+      <button id="submitBtn" onclick="handleSubmit()">Submit</button>
+    </div>
+  </div>
+
+  
+
+  <script src="./index.js"></script>
+</body>
+</html>

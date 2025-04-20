@@ -1,0 +1,112 @@
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background-color:white;
+    margin: 0;
+    padding: 70px;
+    min-height: 100vh;
+}
+.second-resume{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.container{
+    width: 100%;
+    padding: 0;
+    background-color: lightgrey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.parent{
+    width: 100%;
+    display: flex;
+}
+
+.left{
+    width: 30%;
+    min-height: 100vh;
+    border-right: 3px solid black;
+}
+
+.card1{
+    width: 95%;
+    border-bottom: 2px solid black;
+}
+.card1 li,.card2 li,.card3 li,.card4 li{
+    margin-bottom: 10px;
+}
+.card2{
+    width: 95%;
+    border-bottom: 2px solid black;
+}
+
+
+.card3{
+    width: 95%;
+    border-bottom: 2px solid black;
+}
+
+.card3{
+    width: 95%;
+}
+
+.right{
+    width: 70%;
+}
+.pro-exp{
+    padding-left: 40px;
+    text-transform: uppercase;
+}
+.right-container{
+    width: 95%;
+    margin-left: 40px;
+}
+.right-container h3 , .right-container h4{
+    margin-bottom: -10px;
+}
+.right-container p{
+    text-align: justify;
+}
+@media screen and (max-width: 780px) {
+body{
+    padding: 20px;
+}    
+.second-resume{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+.left{
+    width: 40%;
+    font-size: 8px;
+    padding: 0;
+    min-height: 100vh;
+    border-right: 3px solid black;
+}
+.right{
+    width: 60%;
+}
+.pro-exp{
+    padding-left: 20px;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+.right-container{
+    width: 95%;
+    margin-left: 20px;
+}
+.right-container h3 , .right-container h4{
+    font-size: 12px;
+}
+.right-container p{
+    text-align: justify;
+    font-size: 10px;
+    margin-top: 10px;
+}
+}
