@@ -4,105 +4,120 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="second.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <title>Without Image Resume Template</title>
 </head>
 <body>
-    <div class="second-resume">
+    <div class="second-resume" id="resume-content">
+        <!-- Same resume content -->
         <div class="container">
-            <h2>Hamza Bhatti</h2>
-            <h4>Jobe Role</h4>
+            <h2 id="fullName"></h2>
+            <h4 id="position">Job Role</h4>
         </div>
 
         <div>
             <h3>Objective</h3>
-            <p>Certified digital marketer specializing in SEO, I excel at optimizing websites 
-                to boost search engine rankings. With a strong track-record in driving organic 
-                growth through data-driven strategies and meticulous attention to detail, I’m 
-                dedicated to improving online visibility and delivering impactful results. My 
-                professional experience showcases my ability to achieve measurable success and 
-                enhance digital presence
-            </p>
+            <p id="summary"></p>
         </div>
 
         <div class="parent">
             <div class="left">
                 <div class="card1">
                     <h2>Contact</h2>
-                <div>
-                        <li>Phone: +927412783</li>
-                        <li>Email: abc@hotmail.com</li>
-                        <li>Address: asdyu9128</li>
-                </div>
+                    <div id="contact-info"></div>
                 </div>
 
                 <div class="card2">
                     <h2>Education</h2>
-                <div>
-                        <li>BSCS</li>
-                        <li>Inter</li>
-                        <li>Matric</li>
-                </div>
+                    <div id="education-info"></div>
                 </div>
 
                 <div class="card3">
                     <h2>Skills</h2>
-                <div>
-                        <li>HTML</li>
-                        <li>CSS</li>
-                        <li>JavaScript</li>
-                        <li>C#</li>
-                        <li>Next JS</li>
-                        <li>Tailwind CSS</li>
-                </div>
+                    <div id="skills-info"></div>
                 </div>
 
                 <div class="card4">
                     <h2>Certification</h2>
-                   <div>
-                        <li>HTML</li>
-                        <li>CSS</li>
-                        <li>JavaScript</li>
-                        <li>C#</li>
-                        <li>Next JS</li>
-                        <li>Tailwind CSS</li>
-                   </div>
+                    <div id="certifications-info"></div>
                 </div>
             </div>
+
             <div class="right">
                 <h2 class="pro-exp">PROFESSIONAL EXPERIENCE</h2>
-                <div class="right-container">
-                    <h3>SEO Executive</h3>
-                    <h4>InterSys Ltd</h4>
-                    <h4>Sep 2023 – Present</h4>
-                    <p>As an SEO Executive at InterSys Limited, I handle everything from 
-                        managing website performance to troubleshooting issues. A big part of 
-                        my job is securing quality backlinks through effective outreach. I focus on 
-                        researching keywords, optimize content, and tackle technical SEO for
-                        new site launches. I also focus on B2B websites, running marketing 
-                        campaigns to generate leads. On top of that, I conduct title research for 
-                        our internal blogs to boost traffic and keep our content engaging. My goal 
-                        is always to drive results and improve our SEO strategy. My biggest 
-                        achievement is ranking important keywords on the first page and 
-                        generating leads through our internal website blogs.</p>
-                </div>
-
-                <div class="right-container">
-                    <h3>SEO Executive</h3>
-                    <h4>InterSys Ltd</h4>
-                    <h4>Sep 2023 – Present</h4>
-                    <p>As an SEO Executive at InterSys Limited, I handle everything from 
-                        managing website performance to troubleshooting issues. A big part of 
-                        my job is securing quality backlinks through effective outreach. I focus on 
-                        researching keywords, optimize content, and tackle technical SEO for
-                        new site launches. I also focus on B2B websites, running marketing 
-                        campaigns to generate leads. On top of that, I conduct title research for 
-                        our internal blogs to boost traffic and keep our content engaging. My goal 
-                        is always to drive results and improve our SEO strategy. My biggest 
-                        achievement is ranking important keywords on the first page and 
-                        generating leads through our internal website blogs.</p>
-                </div>
+                <div id="experience-info" class="right-container"></div>
             </div>
         </div>
     </div>
+
+<div class="btn">
+    <button id="download-pdf">Download PDF</button>
+
+</div>
+    <script>
+        const data = JSON.parse(localStorage.getItem('resumeData'));
+
+        if (data) {
+            document.getElementById('fullName').innerText = data.fullName;
+            document.getElementById('position').innerText = data.position;
+            document.getElementById('summary').innerText = data.summary;
+            document.getElementById('contact-info').innerHTML = `
+                <li>Phone: ${data.phone}</li>
+                <li>Email: ${data.email}</li>
+                <li>Address: ${data.address}</li>
+            `;
+
+            let educationHtml = '';
+            data.education.forEach(edu => {
+                educationHtml += `<li>${edu.degree} - ${edu.university} (${edu.years})</li>`;
+            });
+            document.getElementById('education-info').innerHTML = educationHtml;
+
+            let skillsHtml = '';
+            data.software.forEach(skill => {
+                skillsHtml += `<li>${skill}</li>`;
+            });
+            document.getElementById('skills-info').innerHTML = skillsHtml;
+
+            let certificationsHtml = '';
+            data.certifications.forEach(cert => {
+                certificationsHtml += `<li>${cert}</li>`;
+            });
+            document.getElementById('certifications-info').innerHTML = certificationsHtml;
+
+            let experienceHtml = '';
+            data.experience.forEach(exp => {
+                experienceHtml += `
+                    <h3>${exp.jobTitle}</h3>
+                    <h4>${exp.company}</h4>
+                    <h4>${exp.duration}</h4>
+                    <p>${exp.jobDesc}</p>
+                `;
+            });
+            document.getElementById('experience-info').innerHTML = experienceHtml;
+        }
+        document.getElementById('download-pdf').addEventListener('click', () => {
+    const resume = document.getElementById('resume-content');
+
+    html2canvas(resume, { scale: 2 }).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+        // Calculate X to center the image
+        const x = (pdf.internal.pageSize.getWidth() - pdfWidth) / 2;
+
+        // Use `x` to give it horizontal center or small margin
+        pdf.addImage(imgData, 'PNG', 5, 5, pdfWidth - 10, pdfHeight); // 5mm margin left/right
+
+        pdf.save(`${data.fullName}-Resume.pdf`);
+    });
+});
+
+    </script>
 </body>
 </html>

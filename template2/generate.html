@@ -2,114 +2,136 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="style.css">
-  <title>Dynamic Resume Builder</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    .section {
-      margin-bottom: 30px;
-    }
-    .section h2 {
-      margin-bottom: 10px;
-    }
-    .input-group {
-      display: flex;
-      margin-bottom: 5px;
-    }
-    .input-group input {
-      flex: 1;
-      padding: 5px;
-    }
-    .input-group button {
-      margin-left: 5px;
-    }
-    #resumeDisplay {
-      margin-top: 40px;
-      border-top: 2px solid #000;
-      padding-top: 20px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Generator</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="container">
+    <h1>Create Your Resume</h1>
+    <form id="resumeForm">
+      <h2>Contact Info</h2>
+      <input type="text" placeholder="Full Name" id="fullName" required />
+      <input type="text" placeholder="Phone" id="phone" required />
+      <input type="email" placeholder="Email" id="email" required />
+      <input type="text" placeholder="LinkedIn URL" id="linkedin" />
+      <input type="text" placeholder="Address" id="address" required />
 
-  <h1>Dynamic Resume Builder</h1>
+      <h2>Education</h2>
+      <div id="educationFields">
+        <div class="edu-entry">
+          <input type="text" placeholder="Degree" class="degree" />
+          <input type="text" placeholder="University" class="university" />
+          <input type="text" placeholder="Years" class="years" />
+        </div>
+      </div>
+      <button type="button" onclick="addEducationField()">Add More Education</button>
 
-  <div class="section">
-    <label for="name">Name:</label><br/>
-    <input type="text" id="name" placeholder="Enter your name" />
+      <h2>Software Skills</h2>
+      <div id="softwareSkills">
+        <input type="text" placeholder="Skill" class="software-skill" />
+      </div>
+      <button type="button" onclick="addSoftwareSkillField()">Add More Skills</button>
+
+      <h2>Skills Summary</h2>
+      <input type="text" placeholder="Position" id="position" required />
+      <textarea placeholder="Summary" id="summary"></textarea>
+
+
+      <h2>Certifications</h2>
+      <div id="certificationFields">
+        <input type="text" placeholder="Certification Name" class="certification" />
+      </div>
+      <button type="button" onclick="addCertificationField()">Add More Certification</button>
+
+      <h2>Professional Experience</h2>
+      <div id="experienceFields">
+        <div class="exp-entry">
+          <input type="text" placeholder="Job Title" class="jobTitle" />
+          <input type="text" placeholder="Company" class="company" />
+          <input type="text" placeholder="Duration" class="duration" />
+          <textarea placeholder="Job Description" class="jobDesc"></textarea>
+        </div>
+      </div>
+      <button type="button" onclick="addExperienceField()">Add More Experience</button>
+
+      <button type="submit">Save and View Resume</button>
+    </form>
   </div>
 
-  <div class="section">
-    <label for="role">Job Role:</label><br/>
-    <input type="text" id="role" placeholder="Enter your job role" />
-  </div>
+  <script>
+    function addEducationField() {
+      const container = document.getElementById('educationFields');
+      const div = document.createElement('div');
+      div.classList.add('edu-entry');
+      div.innerHTML = `
+        <input type="text" placeholder="Degree" class="degree" />
+        <input type="text" placeholder="University" class="university" />
+        <input type="text" placeholder="Years" class="years" />
+      `;
+      container.appendChild(div);
+    }
 
-  <div class="section">
-    <label for="intro">Objective:</label><br/>
-    <textarea id="intro" rows="4" cols="50" placeholder="Enter your objective"></textarea>
-  </div>
+    function addSoftwareSkillField() {
+      const container = document.getElementById('softwareSkills');
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.placeholder = 'Skill';
+      input.classList.add('software-skill');
+      container.appendChild(input);
+    }
 
-  <div class="section" id="educationSection">
-    <h2>Education</h2>
-    <div class="input-group">
-      <input type="text" id="educationInput" placeholder="Enter education detail" />
-      <button type="button" onclick="addField('education')">Add</button>
-    </div>
-    <ul id="educationList"></ul>
-  </div>
+    function addCertificationField() {
+      const container = document.getElementById('certificationFields');
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.placeholder = 'Certification Name';
+      input.classList.add('certification');
+      container.appendChild(input);
+    }
 
-  <div class="section" id="skillsSection">
-    <h2>Skills</h2>
-    <div class="input-group">
-      <input type="text" id="skillsInput" placeholder="Enter a skill" />
-      <button type="button" onclick="addField('skills')">Add</button>
-    </div>
-    <ul id="skillsList"></ul>
-  </div>
+    function addExperienceField() {
+      const container = document.getElementById('experienceFields');
+      const div = document.createElement('div');
+      div.classList.add('exp-entry');
+      div.innerHTML = `
+        <input type="text" placeholder="Job Title" class="jobTitle" />
+        <input type="text" placeholder="Company" class="company" />
+        <input type="text" placeholder="Duration" class="duration" />
+        <textarea placeholder="Job Description" class="jobDesc"></textarea>
+      `;
+      container.appendChild(div);
+    }
 
-  <div class="section" id="certificationsSection">
-    <h2>Certifications</h2>
-    <div class="input-group">
-      <input type="text" id="certificationsInput" placeholder="Enter a certification" />
-      <button type="button" onclick="addField('certifications')">Add</button>
-    </div>
-    <ul id="certificationsList"></ul>
-  </div>
+    document.getElementById('resumeForm').addEventListener('submit', function(e) {
+      e.preventDefault();
 
-  <div class="section" id="linksSection">
-    <h2>Social Links</h2>
-    <div class="input-group">
-      <input type="text" id="linksInput" placeholder="Enter a social link" />
-      <button type="button" onclick="addField('links')">Add</button>
-    </div>
-    <ul id="linksList"></ul>
-  </div>
+      const data = {
+        fullName: document.getElementById('fullName').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        linkedin: document.getElementById('linkedin').value,
+        address: document.getElementById('address').value,
+        education: Array.from(document.querySelectorAll('.edu-entry')).map(entry => ({
+          degree: entry.querySelector('.degree').value,
+          university: entry.querySelector('.university').value,
+          years: entry.querySelector('.years').value
+        })),
+        software: Array.from(document.querySelectorAll('.software-skill')).map(input => input.value),
+        position: document.getElementById('position').value,
+        summary: document.getElementById('summary').value,
+        certifications: Array.from(document.querySelectorAll('.certification')).map(c => c.value),
+        experience: Array.from(document.querySelectorAll('.exp-entry')).map(entry => ({
+          jobTitle: entry.querySelector('.jobTitle').value,
+          company: entry.querySelector('.company').value,
+          duration: entry.querySelector('.duration').value,
+          jobDesc: entry.querySelector('.jobDesc').value
+        }))
+      };
 
-  <button type="button" onclick="saveData()">Save Resume</button>
-
-  <div id="resumeDisplay">
-    <h2>Resume Preview</h2>
-    <p><strong>Name:</strong> <span id="displayName"></span></p>
-    <p><strong>Job Role:</strong> <span id="displayRole"></span></p>
-    <p><strong>Objective:</strong> <span id="displayIntro"></span></p>
-
-    <h3>Education</h3>
-    <ul id="displayEducation"></ul>
-
-    <h3>Skills</h3>
-    <ul id="displaySkills"></ul>
-
-    <h3>Certifications</h3>
-    <ul id="displayCertifications"></ul>
-
-    <h3>Social Links</h3>
-    <ul id="displayLinks"></ul>
-  </div>
-
-  <script src="index.js"></script>
+      localStorage.setItem('resumeData', JSON.stringify(data));
+      window.location.href = './resume/second_resume.html';
+    });
+  </script>
 </body>
 </html>
