@@ -3,121 +3,164 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Generator</title>
   <link rel="stylesheet" href="style.css" />
-  <title>Hamza Bhatti Dynamic Resume</title>
 </head>
 <body>
-  <div class="form-container">
-    <!-- Personal Information -->
-    <fieldset class="fieldset">
-      <legend>Personal Information</legend>
-      <label for="name">Full Name:</label>
-      <input type="text" placeholder="Enter Your Name" id="name" required />
+  <div class="container">
+    <h1>Create Your Resume</h1>
+    <form id="resumeForm">
+      <h2>Contact Info</h2>
+      <input type="text" placeholder="Full Name" id="fullName" required />
+      <input type="text" placeholder="Phone" id="phone" required />
+      <input type="email" placeholder="Email" id="email" required />
+      <input type="text" placeholder="LinkedIn URL" id="linkedin" />
+      <input type="text" placeholder="Address" id="address" required />
 
-      <label for="number">Phone Number:</label>
-      <input type="text" placeholder="Enter Your Phone Number" id="number" required />
+      <h2>Profile Picture</h2>
+      <input type="file" id="profilePic" accept="image/*" />
 
-      <label for="email">Email:</label>
-      <input type="email" placeholder="Enter Your Email" id="email" required />
-    </fieldset>
+      <h2>Education</h2>
+      <div id="educationFields">
+        <div class="edu-entry">
+          <input type="text" placeholder="Degree" class="degree" />
+          <input type="text" placeholder="University" class="university" />
+          <input type="text" placeholder="Years" class="years" />
+        </div>
+      </div>
+      <button type="button" onclick="addEducationField()">Add More Education</button>
 
-    <!-- Education -->
-    <fieldset class="fieldset">
-      <legend>Education</legend>
-      <label for="edu-1">Your Last Qualification:</label>
-      <input type="text" placeholder="Enter Your Last Qualification" id="edu-1" required />
+      <h2>Software Skills</h2>
+      <div id="softwareSkills">
+        <input type="text" placeholder="Skill" class="software-skill" />
+      </div>
+      <button type="button" onclick="addSoftwareSkillField()">Add More Skills</button>
 
-      <label for="edu-2">Your Second Last Qualification (Optional):</label>
-      <input type="text" placeholder="Enter Your Second Last Qualification" id="edu-2" />
+      <h2>Skills Summary</h2>
+      <input type="text" placeholder="Position" id="position" required />
+      <textarea placeholder="Summary" id="summary"></textarea>
 
-      <label for="edu-3">Your Third Last Qualification (Optional):</label>
-      <input type="text" placeholder="Enter Your Third Last Qualification" id="edu-3" />
-    </fieldset>
+      <h2>Certifications</h2>
+      <div id="certificationFields">
+        <input type="text" placeholder="Certification Name" class="certification" />
+      </div>
+      <button type="button" onclick="addCertificationField()">Add More Certification</button>
 
-    <!-- Introduction -->
-    <fieldset class="fieldset">
-      <legend>Introduction</legend>
-      <label for="intro">Your Introduction:</label>
-      <textarea rows="5" placeholder="Write the introduction" id="intro" required></textarea>
-    </fieldset>
+      <h2>Professional Experience</h2>
+      <div id="experienceFields">
+        <div class="exp-entry">
+          <input type="text" placeholder="Job Title" class="jobTitle" />
+          <input type="text" placeholder="Company" class="company" />
+          <input type="text" placeholder="Duration" class="duration" />
+          <textarea placeholder="Job Description" class="jobDesc"></textarea>
+        </div>
+      </div>
+      <button type="button" onclick="addExperienceField()">Add More Experience</button>
 
-    <!-- Experience -->
-    <fieldset class="fieldset">
-      <legend>Experience</legend>
-      <label for="exp-1">Your Last Experience:</label>
-      <textarea rows="5" placeholder="Enter Your Last Experience" id="exp-1" required></textarea>
-
-      <label for="exp-2">Your Second Last Experience (Optional):</label>
-      <textarea rows="5" placeholder="Enter Your Second Last Experience" id="exp-2"></textarea>
-
-      <label for="exp-3">Your Third Last Experience (Optional):</label>
-      <textarea rows="5" placeholder="Enter Your Third Last Experience" id="exp-3"></textarea>
-    </fieldset>
-
-    <!-- Skills -->
-    <fieldset class="fieldset">
-      <legend>Skills</legend>
-      <label for="ski-1">Skill 1 (Optional):</label>
-      <input type="text" placeholder="Enter Your Skill" id="ski-1" />
-
-      <label for="ski-2">Skill 2 (Optional):</label>
-      <input type="text" placeholder="Enter Your Skill" id="ski-2" />
-
-      <label for="ski-3">Skill 3 (Optional):</label>
-      <input type="text" placeholder="Enter Your Skill" id="ski-3" />
-
-      <label for="ski-4">Skill 4 (Optional):</label>
-      <input type="text" placeholder="Enter Your Skill" id="ski-4" />
-
-      <label for="ski-5">Skill 5 (Optional):</label>
-      <input type="text" placeholder="Enter Your Skill" id="ski-5" />
-
-      <label for="ski-6">Skill 6 (Optional):</label>
-      <input type="text" placeholder="Enter Your Skill" id="ski-6" />
-    </fieldset>
-
-    <!-- Certification -->
-    <fieldset class="fieldset">
-      <legend>Certification</legend>
-      <label for="first-1">First:</label>
-      <textarea rows="5" placeholder="Enter Your First Certification" id="first-1" required></textarea>
-
-      <label for="sec-2">Second (Optional):</label>
-      <textarea rows="5" placeholder="Enter Your Second Certification" id="sec-2"></textarea>
-
-      <label for="third-3">Third (Optional):</label>
-      <textarea rows="5" placeholder="Enter Your Third Certification" id="third-3"></textarea>
-
-      <label for="forth-4">Forth (Optional):</label>
-      <textarea rows="5" placeholder="Enter Your Forth Certification" id="forth-4"></textarea>
-
-      <label for="fifth-5">Fifth (Optional):</label>
-      <textarea rows="5" placeholder="Enter Your Fifth Certification" id="fifth-5"></textarea>
-    </fieldset>
-
-    <!-- Social Links -->
-    <fieldset class="fieldset">
-      <legend>Social Links</legend>
-      <label for="link-1">Link 1:</label>
-      <input type="text" placeholder="Enter Your Link" id="link-1" required />
-
-      <label for="link-2">Link 2 (Optional):</label>
-      <input type="text" placeholder="Enter Your Link" id="link-2" />
-
-      <label for="link-3">Link 3 (Optional):</label>
-      <input type="text" placeholder="Enter Your Link" id="link-3" />
-
-      <label for="profilepic">Upload Profile Picture:</label>
-      <input type="file" id="profilepic" />
-    </fieldset>
-
-    <div class="button-container">
-      <button id="submitBtn" onclick="handleSubmit()">Submit</button>
-    </div>
+      <button type="submit">Save and View Resume</button>
+    </form>
   </div>
 
-  
+  <script>
+    function addEducationField() {
+      const container = document.getElementById('educationFields');
+      const div = document.createElement('div');
+      div.classList.add('edu-entry');
+      div.innerHTML = `
+        <input type="text" placeholder="Degree" class="degree" />
+        <input type="text" placeholder="University" class="university" />
+        <input type="text" placeholder="Years" class="years" />
+      `;
+      container.appendChild(div);
+    }
 
-  <script src="./index.js"></script>
+    function addSoftwareSkillField() {
+      const container = document.getElementById('softwareSkills');
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.placeholder = 'Skill';
+      input.classList.add('software-skill');
+      container.appendChild(input);
+    }
+
+    function addCertificationField() {
+      const container = document.getElementById('certificationFields');
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.placeholder = 'Certification Name';
+      input.classList.add('certification');
+      container.appendChild(input);
+    }
+
+    function addExperienceField() {
+      const container = document.getElementById('experienceFields');
+      const div = document.createElement('div');
+      div.classList.add('exp-entry');
+      div.innerHTML = `
+        <input type="text" placeholder="Job Title" class="jobTitle" />
+        <input type="text" placeholder="Company" class="company" />
+        <input type="text" placeholder="Duration" class="duration" />
+        <textarea placeholder="Job Description" class="jobDesc"></textarea>
+      `;
+      container.appendChild(div);
+    }
+
+    // Convert image file to base64 string
+    function convertImageToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+        reader.readAsDataURL(file);
+      });
+    }
+
+    document.getElementById('resumeForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      // Collect basic info
+      const data = {
+        fullName: document.getElementById('fullName').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        linkedin: document.getElementById('linkedin').value,
+        address: document.getElementById('address').value,
+        education: Array.from(document.querySelectorAll('.edu-entry')).map(entry => ({
+          degree: entry.querySelector('.degree').value,
+          university: entry.querySelector('.university').value,
+          years: entry.querySelector('.years').value
+        })),
+        software: Array.from(document.querySelectorAll('.software-skill')).map(input => input.value),
+        position: document.getElementById('position').value,
+        summary: document.getElementById('summary').value,
+        certifications: Array.from(document.querySelectorAll('.certification')).map(c => c.value),
+        experience: Array.from(document.querySelectorAll('.exp-entry')).map(entry => ({
+          jobTitle: entry.querySelector('.jobTitle').value,
+          company: entry.querySelector('.company').value,
+          duration: entry.querySelector('.duration').value,
+          jobDesc: entry.querySelector('.jobDesc').value
+        }))
+      };
+
+      // Handle image upload
+      const fileInput = document.getElementById('profilePic');
+      if (fileInput.files.length > 0) {
+        try {
+          data.profilePic = await convertImageToBase64(fileInput.files[0]);
+        } catch (error) {
+          alert('Failed to read image file.');
+          return;
+        }
+      } else {
+        data.profilePic = null;
+      }
+
+      // Save all data including image to localStorage
+      localStorage.setItem('resumeData', JSON.stringify(data));
+
+      // Redirect or do whatever next
+      window.location.href = './resume/cv.html';
+    });
+  </script>
 </body>
 </html>
